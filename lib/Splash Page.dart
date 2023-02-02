@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
         height: double.infinity,
         width: double.infinity,
         child: Stack(
-          alignment: const Alignment(0.9, 0.9),
+          alignment: const Alignment(0.9, 0.910),
           children: [
             Image.asset(
               'asset/image/WhatsApp Image 2023-02-02 at 10.58.04 PM.jpeg',

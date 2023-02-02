@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'Splash Page.dart';
 import 'Splash2.dart';
 import 'Splash3.dart';
-import 'Splash4.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -14,7 +13,6 @@ void main() {
       'splashPage1': (context) => const Splash(),
       'splashPage2': (context) => const Splash2(),
       'splashPage3': (context) => const Splash3(),
-      'splashPage4': (context) => const Splash4(),
     },
   ));
 }
@@ -37,6 +35,18 @@ class _MyAppState extends State<MyApp> {
         ),
         centerTitle: true,
         backgroundColor: Colors.black,
+      ),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        color: Colors.white,
+        child: const Center(
+          child: Text(
+            "Welcome To The Main Page....",
+            style: TextStyle(
+                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
       ),
     );
   }
