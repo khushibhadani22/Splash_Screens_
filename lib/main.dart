@@ -8,14 +8,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  bool? done = prefs.getBool('done') ?? false;
-  bool? first = prefs.getBool('done') ?? false;
+  bool? ok = prefs.getBool('done') ?? false;
+  bool? main = prefs.getBool('done') ?? false;
   runApp(
     MaterialApp(
-      initialRoute: (first == false)
+      initialRoute: (main == false)
           ? '/'
-          : (done == false)
-              ? 'page3'
+          : (ok == false)
+              ? 'third'
               : 'home',
       debugShowCheckedModeBanner: false,
       routes: {
@@ -84,26 +84,27 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Home Page"),
-        leading: Container(),
-        centerTitle: true,
-        backgroundColor: Colors.teal,
-      ),
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              "Welcome To The Home Page.....",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.teal),
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Home Page"),
+          centerTitle: true,
+          backgroundColor: Colors.teal,
+        ),
+        backgroundColor: Colors.white,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "Welcome To The Home Page.....",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.teal),
+              ),
+            ],
+          ),
         ),
       ),
     );
