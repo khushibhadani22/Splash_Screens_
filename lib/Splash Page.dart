@@ -75,7 +75,7 @@ class _SplashState extends State<Splash> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  Navigator.of(context).pushNamed('page2');
+                  Navigator.of(context).pushNamed('second');
                 });
               },
               child: Container(

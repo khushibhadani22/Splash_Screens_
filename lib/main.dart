@@ -8,13 +8,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  bool? ok = prefs.getBool('done') ?? false;
-  bool? main = prefs.getBool('done') ?? false;
+  bool? first = prefs.getBool('done') ?? false;
+  bool? second = prefs.getBool('done') ?? false;
   runApp(
     MaterialApp(
-      initialRoute: (main == false)
+      initialRoute: (second == false)
           ? '/'
-          : (ok == false)
+          : (first == false)
               ? 'third'
               : 'home',
       debugShowCheckedModeBanner: false,
@@ -29,10 +29,6 @@ void main() async {
   );
 }
 
-class Global {
-  static int i = 0;
-}
-
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -44,9 +40,9 @@ class _MyAppState extends State<MyApp> {
   late PageController pageController = PageController();
   late TabController tabController;
 
-  List<Widget> getPages = [const Splash(), const Splash2(), const Splash3()];
+  List<Widget> loadPage = [const Splash(), const Splash2(), const Splash3()];
 
-  splash() async {
+  splashPage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     await prefs.setBool('first', true);
@@ -55,7 +51,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    splash();
+    splashPage();
   }
 
   @override
@@ -69,7 +65,7 @@ class _MyAppState extends State<MyApp> {
             });
           },
           controller: pageController,
-          children: getPages),
+          children: loadPage),
     );
   }
 }
@@ -87,6 +83,17 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: Container(),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('first');
+                },
+                icon: const Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                ))
+          ],
           title: const Text("Home Page"),
           centerTitle: true,
           backgroundColor: Colors.teal,
@@ -109,4 +116,8 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+
+class Global {
+  static int i = 0;
 }
